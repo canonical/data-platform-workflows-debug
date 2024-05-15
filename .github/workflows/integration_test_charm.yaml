@@ -187,7 +187,7 @@ jobs:
         if: ${{ inputs.architecture == 'arm64' || matrix.groups.self_hosted || fromJSON(inputs._default-runner) }}
         run: df --human-readable
       - name: (arm64 GitHub-hosted) Link python to python3
-        if: ${{ inputs.architecture == 'arm64' && !matrix.groups.self_hosted || fromJSON(inputs._default-runner) }}
+        if: ${{ inputs.architecture == 'arm64' && !matrix.groups.self_hosted }}
         run: sudo ln -s /usr/bin/python3 /usr/bin/python
       - name: (self-hosted) Install pipx
         if: ${{ inputs.architecture == 'arm64' || matrix.groups.self_hosted || fromJSON(inputs._default-runner) }}
