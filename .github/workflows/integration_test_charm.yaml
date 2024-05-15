@@ -61,10 +61,10 @@ on:
       _beta_allure_report:
         description: |
           (BETA) Enable Allure Report
-          
+
           Subject to breaking changes without major version bump.
           Not currently a public interface—only for testing
-          
+
           If this workflow is called with a matrix, this value can only be `true` for one
           combination in the matrix
         default: false
@@ -352,6 +352,10 @@ jobs:
       - name: Disk usage
         if: ${{ success() || (failure() && steps.tests.outcome == 'failure') }}
         run: df --human-readable
+      - name: Self-hosted runner tmate debugging session
+        if: ${{ failure() }}
+        uses: canonical/action-tmate@main
+        timeout-minutes: 3600
     outputs:
       juju-snap-channel-for-artifact: ${{ steps.parse-versions.outputs.snap_channel_for_artifact }}
 
