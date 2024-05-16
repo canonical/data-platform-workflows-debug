@@ -140,6 +140,11 @@ jobs:
     runs-on: ${{ matrix.groups.runner || fromJSON('["self-hosted", "linux", "ARM64", "large", "jammy"]') }}
     timeout-minutes: 120
     steps:
+      - name: Polar signal profiling
+        uses: polarsignals/gh-actions-ps-profiling@main
+        with:
+          polarsignals_cloud_token: ${{ secrets.polar_signal_token }}
+          labels: 'repo=data-platform-workflows-debug;branch=${{ steps.extract_branch.outputs.branch }};gh_run_id=${{ github.run_id }}'
       - name: (self-hosted) Disk usage
         run: df --human-readable
       - name: (self-hosted) Install pipx
