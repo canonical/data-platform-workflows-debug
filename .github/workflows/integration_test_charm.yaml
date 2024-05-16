@@ -153,7 +153,7 @@ jobs:
         id: workflow-version
         uses: canonical/get-workflow-version-action@v1
         with:
-          repository-name: canonical/data-platform-workflows
+          repository-name: canonical/data-platform-workflows-debug
           file-name: integration_test_charm.yaml
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Install CLI
